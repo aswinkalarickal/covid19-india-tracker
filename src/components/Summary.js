@@ -4,7 +4,7 @@ import SummaryCard from './SummaryCard'
 
 const Summary = ({ summary }) => {
   return (
-    <div className="sm:flex mx-auto mt-2 justify-center">
+    <div className="text-center sm:flex mx-auto mt-2 justify-center">
       <SummaryCard color="blue-400" name="CONFIRMED" count={summary.total} />
       <SummaryCard
         color="green-400"

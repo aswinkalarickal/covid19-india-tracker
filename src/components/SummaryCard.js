@@ -8,7 +8,7 @@ const SummaryCard = ({ color, name, count }) => {
         color
       }
     >
-      <h2 className={'font-serif text-xl text-' + color}>{name}</h2>
+      <h2 className={'font-serif font-bold text-xl text-' + color}>{name}</h2>
       <div className="text-3xl font-mono">{count}</div>
     </div>
   )
