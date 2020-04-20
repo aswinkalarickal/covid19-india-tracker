@@ -40,11 +40,11 @@ function App() {
       </header>
 
       {isLoading ? (
-        <section id="loading">
+        <main>
           <h2 className="text-3xl text-center mx-auto mt-20">Loading...</h2>
-        </section>
+        </main>
       ) : (
-        <>
+        <main>
           <section id="data-info">
             <h2 className="text-center mx-auto mt-2">
               Data refreshed last on{' '}
@@ -64,10 +64,18 @@ function App() {
               lastData={lastData.regional}
             />
           </section>
-        </>
+        </main>
       )}
 
       <footer className="text-center text-sm my-8">
+        <p>
+          Get this project at{' '}
+          <span className="text-gray-500">
+            <a href="https://github.com/aswinkalarickal/covid19-india-tracker">
+              aswinkalarickal/covid19-india-tracker
+            </a>
+          </span>
+        </p>
         <p>
           Data from{' '}
           <span className="text-gray-500">
