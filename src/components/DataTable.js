@@ -1,6 +1,7 @@
 import React from 'react'
 
 import DataTableRow from './DataTableRow'
+import DataTableInfo from './DataTableInfo'
 
 const DataTable = ({ currentData, lastData }) => {
   return (
@@ -9,6 +10,7 @@ const DataTable = ({ currentData, lastData }) => {
         <thead>
           <tr>
             <th className="px-4 py-2 font-serif">State / UT</th>
+            <th className="px-4 py-2 font-serif text-gray-700">C</th>
             <th className="px-4 py-2 font-serif text-blue-400">A</th>
             <th className="px-4 py-2 font-serif text-green-400">R</th>
             <th className="px-4 py-2 font-serif text-red-400">D</th>
@@ -20,6 +22,9 @@ const DataTable = ({ currentData, lastData }) => {
               key={index}
               data={{
                 ...currentRegionData,
+                totalConfirmedDiff:
+                  currentRegionData.totalConfirmed -
+                  lastData[index].totalConfirmed,
                 totalActiveDiff:
                   currentRegionData.totalConfirmed -
                   currentRegionData.discharged -
@@ -35,19 +40,7 @@ const DataTable = ({ currentData, lastData }) => {
           ))}
         </tbody>
       </table>
-      <ul className="max-w-md mx-auto mt-2 text-center">
-        <li>
-          <span className="font-bold text-blue-400 font-serif">A</span> = Active
-        </li>
-        <li>
-          <span className="font-bold text-green-400 font-serif">R</span> =
-          Recovered
-        </li>
-        <li>
-          <span className="font-bold text-red-400 font-serif">D</span> =
-          Deceased
-        </li>
-      </ul>
+      <DataTableInfo />
     </>
   )
 }

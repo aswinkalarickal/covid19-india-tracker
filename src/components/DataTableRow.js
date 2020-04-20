@@ -7,11 +7,25 @@ const DataTableRow = ({ data }) => {
     <tr>
       <td className="border px-2 py-1">{data.loc}</td>
       <td className="border px-2 py-1 font-mono">
+        {data.totalConfirmed}
+        {data.totalConfirmedDiff !== 0 && (
+          <span
+            className={
+              'block md:inline-block text-sm md:ml-1 ' +
+              (data.totalConfirmedDiff > 0 ? 'text-green-400' : 'text-red-400')
+            }
+          >
+            {(data.totalConfirmedDiff > 0 ? '↑' : '↓') +
+              Math.abs(data.totalConfirmedDiff)}
+          </span>
+        )}
+      </td>
+      <td className="border px-2 py-1 font-mono">
         {currentActive}
         {data.totalActiveDiff !== 0 && (
           <span
             className={
-              'text-sm ml-1 ' +
+              'block md:inline-block text-sm md:ml-1 ' +
               (data.totalActiveDiff > 0 ? 'text-green-400' : 'text-red-400')
             }
           >
@@ -25,7 +39,7 @@ const DataTableRow = ({ data }) => {
         {data.dischargedDiff !== 0 && (
           <span
             className={
-              'text-sm ml-1 ' +
+              'block md:inline-block text-sm md:ml-1 ' +
               (data.dischargedDiff > 0 ? 'text-green-400' : 'text-red-400')
             }
           >
@@ -39,7 +53,7 @@ const DataTableRow = ({ data }) => {
         {data.deathsDiff !== 0 && (
           <span
             className={
-              'text-sm ml-1 ' +
+              'block md:inline-block text-sm md:ml-1 ' +
               (data.deathsDiff > 0 ? 'text-green-400' : 'text-red-400')
             }
           >
