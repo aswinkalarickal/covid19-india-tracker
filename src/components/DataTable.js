@@ -20,9 +20,13 @@ const DataTable = ({ currentData, lastData }) => {
               key={index}
               data={{
                 ...currentRegionData,
-                totalConfirmedDiff:
+                totalActiveDiff:
                   currentRegionData.totalConfirmed -
-                  lastData[index].totalConfirmed,
+                  currentRegionData.discharged -
+                  currentRegionData.deaths -
+                  (lastData[index].totalConfirmed -
+                    lastData[index].discharged -
+                    lastData[index].deaths),
                 dischargedDiff:
                   currentRegionData.discharged - lastData[index].discharged,
                 deathsDiff: currentRegionData.deaths - lastData[index].deaths,

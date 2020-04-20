@@ -8,15 +8,15 @@ const DataTableRow = ({ data }) => {
       <td className="border px-2 py-1">{data.loc}</td>
       <td className="border px-2 py-1 font-mono">
         {currentActive}
-        {data.totalConfirmedDiff !== 0 && (
+        {data.totalActiveDiff !== 0 && (
           <span
             className={
               'text-sm ml-1 ' +
-              (data.totalConfirmedDiff > 0 ? 'text-green-400' : 'text-red-400')
+              (data.totalActiveDiff > 0 ? 'text-green-400' : 'text-red-400')
             }
           >
-            {(data.totalConfirmedDiff > 0 ? '↑' : '↓') +
-              Math.abs(data.totalConfirmedDiff)}
+            {(data.totalActiveDiff > 0 ? '↑' : '↓') +
+              Math.abs(data.totalActiveDiff)}
           </span>
         )}
       </td>
