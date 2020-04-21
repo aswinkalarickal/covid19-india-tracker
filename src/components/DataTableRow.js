@@ -4,7 +4,7 @@ const DataTableRow = ({ data }) => {
   const currentActive = data.totalConfirmed - data.discharged - data.deaths
 
   return (
-    <tr>
+    <tr className={currentActive === 0 ? 'bg-green-100' : ''}>
       <td className="border px-2 py-1">{data.loc}</td>
       <td className="border px-2 py-1 font-mono">
         {data.totalConfirmed}
