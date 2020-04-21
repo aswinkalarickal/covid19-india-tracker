@@ -3,6 +3,7 @@ import Moment from 'moment'
 
 import Summary from './components/Summary'
 import DataTable from './components/DataTable'
+import ChartInfo from './components/ChartInfo'
 
 Moment.locale('en')
 
@@ -63,6 +64,10 @@ function App() {
               currentData={currentData.regional}
               lastData={lastData.regional}
             />
+          </section>
+
+          <section id="chart">
+            <ChartInfo history={history} />
           </section>
         </main>
       )}
