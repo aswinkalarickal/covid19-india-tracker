@@ -19,7 +19,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          setLastRefreshDate(Moment(data.lastRefreshed).format('LLLL'))
+          setLastRefreshDate(Moment(data.lastOriginUpdate).format('LLLL'))
           setHistory(data.data)
           setIsLoading(false)
         }
@@ -48,7 +48,7 @@ function App() {
         <main>
           <section id="data-info">
             <h2 className="text-center mx-auto mt-2">
-              Data refreshed last on{' '}
+              Data updated on{' '}
               <span className="font-serif px-2 py-1 bg-gray-200 rounded inline-block">
                 {lastRefreshDate}
               </span>

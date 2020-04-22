@@ -17,27 +17,40 @@ const DataTable = ({ currentData, lastData }) => {
           </tr>
         </thead>
         <tbody>
-          {currentData.map((currentRegionData, index) => (
-            <DataTableRow
-              key={index}
-              data={{
-                ...currentRegionData,
-                totalConfirmedDiff:
-                  currentRegionData.totalConfirmed -
-                  lastData[index].totalConfirmed,
-                totalActiveDiff:
-                  currentRegionData.totalConfirmed -
-                  currentRegionData.discharged -
-                  currentRegionData.deaths -
-                  (lastData[index].totalConfirmed -
-                    lastData[index].discharged -
-                    lastData[index].deaths),
-                dischargedDiff:
-                  currentRegionData.discharged - lastData[index].discharged,
-                deathsDiff: currentRegionData.deaths - lastData[index].deaths,
-              }}
-            />
-          ))}
+          {currentData.map(currentRegionData => {
+            const loc = currentRegionData.loc.replace('#', '')
+            let lastRegionData = {
+              totalConfirmed: 0,
+              discharged: 0,
+              deaths: 0,
+            }
+            for (let i = 0; i < lastData.length; i++) {
+              if (lastData[i].loc.replace('#', '') === loc) {
+                lastRegionData = lastData[i]
+              }
+            }
+            return (
+              <DataTableRow
+                key={loc}
+                data={{
+                  ...currentRegionData,
+                  totalConfirmedDiff:
+                    currentRegionData.totalConfirmed -
+                    lastRegionData.totalConfirmed,
+                  totalActiveDiff:
+                    currentRegionData.totalConfirmed -
+                    currentRegionData.discharged -
+                    currentRegionData.deaths -
+                    (lastRegionData.totalConfirmed -
+                      lastRegionData.discharged -
+                      lastRegionData.deaths),
+                  dischargedDiff:
+                    currentRegionData.discharged - lastRegionData.discharged,
+                  deathsDiff: currentRegionData.deaths - lastRegionData.deaths,
+                }}
+              />
+            )
+          })}
         </tbody>
       </table>
       <DataTableInfo />

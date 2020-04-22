@@ -20,7 +20,7 @@ const ChartInfo = ({ history }) => {
     }
 
     data.regional.forEach(region => {
-      const loc = region.loc //.replace('#', '')
+      const loc = region.loc.replace('#', '')
       if (regionData[loc] === undefined) {
         regionData[loc] = {
           totalConfirmed: [],
