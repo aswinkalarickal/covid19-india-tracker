@@ -50,6 +50,7 @@ const ChartInfo = ({ history }) => {
     } else {
       setChartData(regionData[state])
     }
+    // eslint-disable-next-line
   }, [state])
 
   return (
