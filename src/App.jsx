@@ -24,6 +24,7 @@ function App() {
           setIsLoading(false)
         }
       })
+      // eslint-disable-next-line no-console
       .catch(err => console.log(err))
   }, [])
 
@@ -48,7 +49,7 @@ function App() {
         <main>
           <section id="data-info">
             <h2 className="text-center mx-auto mt-2">
-              Data updated on{' '}
+              <>Data updated on </>
               <span className="font-serif px-2 py-1 bg-gray-200 rounded inline-block">
                 {lastRefreshDate}
               </span>
@@ -74,7 +75,7 @@ function App() {
 
       <footer className="text-center text-sm my-8">
         <p>
-          Get this project at{' '}
+          <>Get this project at </>
           <span className="text-gray-500">
             <a href="https://github.com/aswinkalarickal/covid19-india-tracker">
               aswinkalarickal/covid19-india-tracker
@@ -82,7 +83,7 @@ function App() {
           </span>
         </p>
         <p>
-          Data from{' '}
+          <>Data from </>
           <span className="text-gray-500">
             <a href="https://github.com/amodm/api-covid19-in">
               amodm/api-covid19-in

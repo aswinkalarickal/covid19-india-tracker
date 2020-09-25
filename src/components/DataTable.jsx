@@ -24,7 +24,7 @@ const DataTable = ({ currentData, lastData }) => {
               discharged: 0,
               deaths: 0,
             }
-            for (let i = 0; i < lastData.length; i++) {
+            for (let i = 0; i < lastData.length; i += 1) {
               if (lastData[i].loc.replace('#', '') === loc) {
                 lastRegionData = lastData[i]
               }

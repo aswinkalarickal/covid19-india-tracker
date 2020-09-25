@@ -10,7 +10,7 @@ const ChartInfo = ({ history }) => {
     deaths: [],
     dates: [],
   }
-  let regionData = {}
+  const regionData = {}
   history.forEach(data => {
     fullData = {
       totalConfirmed: [...fullData.totalConfirmed, data.summary.total],
@@ -50,7 +50,6 @@ const ChartInfo = ({ history }) => {
     } else {
       setChartData(regionData[state])
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
   return (
@@ -61,9 +60,9 @@ const ChartInfo = ({ history }) => {
           <option value="India">India</option>
           {Object.keys(regionData)
             .sort()
-            .map(state => (
-              <option key={state} value={state}>
-                {state}
+            .map(stateName => (
+              <option key={stateName} value={stateName}>
+                {stateName}
               </option>
             ))}
         </select>
