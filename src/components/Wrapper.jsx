@@ -1,5 +1,5 @@
 import React from 'react'
-import Moment from 'moment'
+import format from 'date-fns/format'
 
 import Summary from './Summary'
 import DataTable from './DataTable'
@@ -14,7 +14,7 @@ const Wrapper = ({ data }) => {
         <h2 className="text-center mx-auto mt-2">
           <>Data updated on </>
           <span className="font-serif px-2 py-1 bg-gray-200 rounded inline-block">
-            {Moment(data.lastOriginUpdate).format('LLLL')}
+            {format(new Date(data.lastOriginUpdate), 'PPPPpp')}
           </span>
         </h2>
       </section>

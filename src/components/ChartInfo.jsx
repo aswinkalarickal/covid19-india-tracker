@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Moment from 'moment'
+import format from 'date-fns/format'
 
 import Chart from './Chart'
 
@@ -16,7 +16,7 @@ const ChartInfo = ({ history }) => {
       totalConfirmed: [...fullData.totalConfirmed, data.summary.total],
       discharged: [...fullData.discharged, data.summary.discharged],
       deaths: [...fullData.deaths, data.summary.deaths],
-      dates: [...fullData.dates, Moment(data.day).format('D MMM')],
+      dates: [...fullData.dates, format(new Date(data.day), 'dd MMM')],
     }
 
     data.regional.forEach(region => {
@@ -36,7 +36,7 @@ const ChartInfo = ({ history }) => {
         ],
         discharged: [...regionData[loc].discharged, region.discharged],
         deaths: [...regionData[loc].deaths, region.deaths],
-        dates: [...regionData[loc].dates, Moment(data.day).format('D MMM')],
+        dates: [...regionData[loc].dates, format(new Date(data.day), 'dd MMM')],
       }
     })
   })

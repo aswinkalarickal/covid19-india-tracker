@@ -1,11 +1,8 @@
 import React from 'react'
-import Moment from 'moment'
 import { useQuery } from 'react-query'
 import axios from 'axios'
 
 import Wrapper from './components/Wrapper'
-
-Moment.locale('en')
 
 function App() {
   const { isLoading, error, data } = useQuery('fetchData', () =>
