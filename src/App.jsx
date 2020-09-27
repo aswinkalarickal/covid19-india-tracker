@@ -1,37 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Moment from 'moment'
+import { useQuery } from 'react-query'
+import axios from 'axios'
 
-import Summary from './components/Summary'
-import DataTable from './components/DataTable'
-import ChartInfo from './components/ChartInfo'
+import Wrapper from './components/Wrapper'
 
 Moment.locale('en')
 
 function App() {
-  const [history, setHistory] = useState({})
-  const [currentData, setCurrentData] = useState([])
-  const [lastData, setLastData] = useState([])
-  const [lastRefreshDate, setLastRefreshDate] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    fetch('https://api.rootnet.in/covid19-in/stats/history')
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          setLastRefreshDate(Moment(data.lastOriginUpdate).format('LLLL'))
-          setHistory(data.data)
-          setIsLoading(false)
-        }
-      })
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err))
-  }, [])
-
-  useEffect(() => {
-    setCurrentData(history[history.length - 1])
-    setLastData(history[history.length - 2])
-  }, [history])
+  const { isLoading, error, data } = useQuery('fetchData', () =>
+    axios('https://api.rootnet.in/covid19-in/stats/history')
+  )
 
   return (
     <div className="container mx-auto">
@@ -41,37 +20,17 @@ function App() {
         </h1>
       </header>
 
-      {isLoading ? (
-        <main>
+      <main>
+        {isLoading ? (
           <h2 className="text-3xl text-center mx-auto mt-20">Loading...</h2>
-        </main>
-      ) : (
-        <main>
-          <section id="data-info">
-            <h2 className="text-center mx-auto mt-2">
-              <>Data updated on </>
-              <span className="font-serif px-2 py-1 bg-gray-200 rounded inline-block">
-                {lastRefreshDate}
-              </span>
-            </h2>
-          </section>
-
-          <section id="summary">
-            <Summary summary={currentData.summary} />
-          </section>
-
-          <section id="state-table">
-            <DataTable
-              currentData={currentData.regional}
-              lastData={lastData.regional}
-            />
-          </section>
-
-          <section id="chart">
-            <ChartInfo history={history} />
-          </section>
-        </main>
-      )}
+        ) : error ? (
+          <p className="text-2xl text-center mx-auto mt-8 text-red-400">
+            Error occurred on loading data!
+          </p>
+        ) : (
+          <Wrapper data={data.data} />
+        )}
+      </main>
 
       <footer className="text-center text-sm my-8">
         <p>
